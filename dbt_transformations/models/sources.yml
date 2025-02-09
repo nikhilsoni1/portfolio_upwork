@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: public
+    schema: public
+    database: dev03
+    tables:
+      - name: online_retail2
