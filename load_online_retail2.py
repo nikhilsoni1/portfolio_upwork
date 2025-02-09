@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 import pandas as pd
@@ -11,13 +11,13 @@ import numpy as np
 from tqdm import tqdm
 
 
-# In[2]:
+# In[ ]:
 
 
 df = pd.read_csv("/Users/nikhilsoni/Downloads/online_retail_II.csv")
 
 
-# In[3]:
+# In[ ]:
 
 
 mapping_dict = {
@@ -31,13 +31,27 @@ mapping_dict = {
     "Customer ID": "customer_id",
     "Country": "country",
 }
+
+
+# In[ ]:
+
+
 df1 = df.copy()
 df1 = df1.reset_index(names="id")
 df1 = df1.rename(columns=mapping_dict)
+customer_id = df1["customer_id"]
+customer_id = customer_id.apply(lambda x: x if np.isnan(x) else str(int(x)))
+df1["customer_id"] = customer_id
+df1 = df1.replace({np.nan: None})
+
+
+# In[ ]:
+
+
 records = df1.to_dict(orient="records")
 
 
-# In[5]:
+# In[ ]:
 
 
 db_session = SessionLocal()

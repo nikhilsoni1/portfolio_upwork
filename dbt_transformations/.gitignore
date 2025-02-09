@@ -1,0 +1,30 @@
+# dbt compiled and run artifacts
+target/
+dbt_packages/
+
+# User-specific dbt logs and caches
+logs/
+dbt.log
+
+# Environment and credentials
+.env
+*.db
+*.sqlite
+secrets.yml
+profiles.yml  # Exclude if profiles are local and contain credentials
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE & OS-specific files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Pip dependency files
+*.egg-info/
