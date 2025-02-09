@@ -1,1 +1,66 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
 .venv/
+.ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Database files
+*.sqlite3
+*.db
+
+# Alembic migrations cache
+alembic/versions/*.pyc
+alembic/versions/__pycache__/
+
+# Environment variables & secrets
+.env
+*.env
+config.json
+
+# Logs & Debugging
+logs/
+*.log
+debug.log
+
+# Compiled files
+*.so
+*.o
+*.out
+
+# VS Code settings
+.vscode/
+
+# MacOS system files
+.DS_Store
+
+# PyCharm settings
+.idea/
+
+# Python egg metadata
+*.egg-info/
+.eggs/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy cache
+.mypy_cache/
+
+# Build / Distribution files
+build/
+dist/
+*.egg
+MANIFEST
