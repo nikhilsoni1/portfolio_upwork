@@ -14,7 +14,7 @@ from tqdm import tqdm
 # In[ ]:
 
 
-df = pd.read_csv("/Users/nikhilsoni/Downloads/online_retail_II.csv")
+df = pd.read_csv("online_retail_II.csv")
 
 
 # In[ ]:
