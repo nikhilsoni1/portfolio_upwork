@@ -2,5 +2,6 @@ black[jupyter]
 jupyter
 pandas
 psycopg2-binary
-sqlalchemy
+sqlalchemy<2.0
 alembic
+sqlacodegen
