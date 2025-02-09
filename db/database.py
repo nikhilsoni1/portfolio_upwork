@@ -1,23 +1,21 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from db.models import Base
 
-# Database Configuration
-DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/dev"
+# Load DATABASE_URL from environment variable
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Create SQLAlchemy Engine
-engine = create_engine(DATABASE_URL, echo=True)
+# Create an engine
+engine = create_engine(DATABASE_URL, echo=False)
 
 # Create a session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Base class for ORM models
+# Base class for models
 Base = declarative_base()
 
 
-def get_db():
-    """Dependency to get a new session instance."""
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# Function to initialize the database
+def init_db():
+    Base.metadata.create_all(bind=engine)
