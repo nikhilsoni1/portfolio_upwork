@@ -31,5 +31,27 @@ SELECT
     customer_id,
     recency_score,
     frequency_score,
-    monetary_score
+    monetary_score,
+    CASE 
+        -- Champions: Highest priority (0)
+        WHEN recency_score = 5 AND frequency_score >= 4 AND monetary_score >= 4 THEN 'champions'
+        -- Loyal Customers: Priority (1)
+        WHEN recency_score >= 3 AND frequency_score >= 4 AND monetary_score >= 4 THEN 'loyal_customers'
+        -- Potential Loyalists: Priority (2)
+        WHEN recency_score = 5 AND frequency_score >= 3 THEN 'potential_loyalists'
+        -- At Risk: Priority (3)
+        WHEN recency_score <= 2 AND frequency_score >= 4 AND monetary_score >= 4 THEN 'at_risk'
+        -- Lost Customers: Priority (4)
+        WHEN recency_score = 1 AND frequency_score = 1 AND monetary_score = 1 THEN 'lost_customers'
+        -- Other categories (Priority 5, can be further refined)
+        ELSE 'others'
+    END AS rfm_segment,
+    CASE 
+        WHEN recency_score = 5 AND frequency_score >= 4 AND monetary_score >= 4 THEN 0  -- Champions
+        WHEN recency_score >= 3 AND frequency_score >= 4 AND monetary_score >= 4 THEN 1  -- Loyal Customers
+        WHEN recency_score = 5 AND frequency_score >= 3 THEN 2  -- Potential Loyalists
+        WHEN recency_score <= 2 AND frequency_score >= 4 AND monetary_score >= 4 THEN 3  -- At Risk
+        WHEN recency_score = 1 AND frequency_score = 1 AND monetary_score = 1 THEN 4  -- Lost Customers
+        ELSE 5  -- Others
+    END AS rfm_segment_priority
 FROM rfm_computation
