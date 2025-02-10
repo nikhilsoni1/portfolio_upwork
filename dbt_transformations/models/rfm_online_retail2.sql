@@ -13,7 +13,7 @@ WITH rfm_base AS (
     GROUP BY customer_id
 ),
 date_reference AS (
-    SELECT MAX(invoice_datetime) AS max_date FROM "dev03"."public"."cleaned_online_retail2"
+    SELECT MAX(invoice_datetime) AS max_date FROM {{ ref('cleaned_online_retail2') }}
 ),
 rfm_computation AS (
     SELECT
