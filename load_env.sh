@@ -1,12 +1,18 @@
 #!/bin/bash
 
-# Check if .env file exists
-if [ ! -f .env ]; then
-  echo ".env file not found"
+# Check if a custom .env file is provided as an argument
+ENV_FILE=".env"
+if [ ! -z "$1" ]; then
+  ENV_FILE="$1"
+fi
+
+# Check if the specified .env file exists
+if [ ! -f "$ENV_FILE" ]; then
+  echo "Error: $ENV_FILE file not found"
   exit 1
 fi
 
-# Export variables from .env
+# Export variables from the specified .env file
 while IFS='=' read -r key value; do
   # Ignore comments and empty lines
   if [[ -z "$key" || "$key" =~ ^# ]]; then
@@ -20,6 +26,9 @@ while IFS='=' read -r key value; do
   # Export the variable
   export "$key=$value"
 
-done < .env
+  # Echo the key-value pair
+  echo "Set: $key=$value"
 
-echo "Environment variables loaded"
+done < "$ENV_FILE"
+
+echo "Environment variables loaded from $ENV_FILE"

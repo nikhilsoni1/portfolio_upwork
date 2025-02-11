@@ -9,6 +9,9 @@ env/
 .venv/
 .ENV/
 
+# CSV Files
+*.csv
+
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
 
